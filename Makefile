@@ -265,6 +265,8 @@ build/timestamps/eslint-timestamp: $(SRC_JS) $(SPEC_JS) $(SPEC_RENDERING_JS) \
 
 build/timestamps/node-modules-timestamp: package.json
 	@mkdir -p $(@D)
+	npm config set registry http://registry.npmjs.org/
+	npm config set strict-ssl false
 	npm install
 	@touch $@
 
