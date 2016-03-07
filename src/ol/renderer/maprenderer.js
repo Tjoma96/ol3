@@ -1,12 +1,11 @@
 goog.provide('ol.RendererType');
 goog.provide('ol.renderer.Map');
 
-goog.require('goog.Disposable');
 goog.require('goog.asserts');
-goog.require('goog.dispose');
 goog.require('goog.functions');
 goog.require('goog.vec.Mat4');
 goog.require('ol');
+goog.require('ol.Disposable');
 goog.require('ol.events');
 goog.require('ol.events.EventType');
 goog.require('ol.extent');
@@ -30,7 +29,7 @@ ol.RendererType = {
 
 /**
  * @constructor
- * @extends {goog.Disposable}
+ * @extends {ol.Disposable}
  * @param {Element} container Container.
  * @param {ol.Map} map Map.
  * @struct
@@ -59,7 +58,7 @@ ol.renderer.Map = function(container, map) {
   this.layerRendererListeners_ = {};
 
 };
-goog.inherits(ol.renderer.Map, goog.Disposable);
+goog.inherits(ol.renderer.Map, ol.Disposable);
 
 
 /**
@@ -95,9 +94,8 @@ ol.renderer.Map.prototype.createLayerRenderer = goog.abstractMethod;
  */
 ol.renderer.Map.prototype.disposeInternal = function() {
   for (var id in this.layerRenderers_) {
-    goog.dispose(this.layerRenderers_[id]);
+    this.layerRenderers_[id].dispose();
   }
-  goog.base(this, 'disposeInternal');
 };
 
 
@@ -340,7 +338,7 @@ ol.renderer.Map.prototype.removeUnusedLayerRenderers_ = function(map, frameState
   var layerKey;
   for (layerKey in this.layerRenderers_) {
     if (!frameState || !(layerKey in frameState.layerStates)) {
-      goog.dispose(this.removeLayerRendererByKey_(layerKey));
+      this.removeLayerRendererByKey_(layerKey).dispose();
     }
   }
 };
@@ -351,7 +349,9 @@ ol.renderer.Map.prototype.removeUnusedLayerRenderers_ = function(map, frameState
  * @protected
  */
 ol.renderer.Map.prototype.scheduleExpireIconCache = function(frameState) {
-  frameState.postRenderFunctions.push(ol.renderer.Map.expireIconCache_);
+  frameState.postRenderFunctions.push(
+    /** @type {ol.PostRenderFunction} */ (ol.renderer.Map.expireIconCache_)
+  );
 };
 
 
@@ -364,7 +364,8 @@ ol.renderer.Map.prototype.scheduleRemoveUnusedLayerRenderers = function(frameSta
   for (layerKey in this.layerRenderers_) {
     if (!(layerKey in frameState.layerStates)) {
       frameState.postRenderFunctions.push(
-          this.removeUnusedLayerRenderers_.bind(this));
+        /** @type {ol.PostRenderFunction} */ (this.removeUnusedLayerRenderers_.bind(this))
+      );
       return;
     }
   }

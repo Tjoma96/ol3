@@ -3904,7 +3904,8 @@ olx.source;
 
 
 /**
- * @typedef {{culture: (string|undefined),
+ * @typedef {{cacheSize: (number|undefined),
+ *     culture: (string|undefined),
  *     key: string,
  *     imagerySet: string,
  *     maxZoom: (number|undefined),
@@ -3914,6 +3915,14 @@ olx.source;
  * @api
  */
 olx.source.BingMapsOptions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.BingMapsOptions.prototype.cacheSize;
 
 
 /**
@@ -3984,6 +3993,7 @@ olx.source.BingMapsOptions.prototype.wrapX;
  *     distance: (number|undefined),
  *     extent: (ol.Extent|undefined),
  *     format: (ol.format.Feature|undefined),
+ *     geometryFunction: (undefined|function(ol.Feature):ol.geom.Point),
  *     logo: (string|undefined),
  *     projection: ol.proj.ProjectionLike,
  *     source: ol.source.Vector,
@@ -4015,6 +4025,25 @@ olx.source.ClusterOptions.prototype.distance;
  * @api
  */
 olx.source.ClusterOptions.prototype.extent;
+
+
+/**
+ * Function that takes an {@link ol.Feature} as argument and returns an
+ * {@link ol.geom.Point} as cluster calculation point for the feature. When a
+ * feature should not be considered for clustering, the function should return
+ * `null`. The default, which works when the underyling source contains point
+ * features only, is
+ * ```js
+ * function(feature) {
+ *   return feature.getGeometry();
+ * }
+ * ```
+ * See {@link ol.geom.Polygon#getInteriorPoint} for a way to get a cluster
+ * calculation point for polygons.
+ * @type {undefined|function(ol.Feature):ol.geom.Point}
+ * @api
+ */
+olx.source.ClusterOptions.prototype.geometryFunction;
 
 
 /**
@@ -4087,6 +4116,7 @@ olx.source.TileUTFGridOptions.prototype.url;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *            cacheSize: (number|undefined),
  *            crossOrigin: (null|string|undefined),
  *            logo: (string|olx.LogoOptions|undefined),
  *            opaque: (boolean|undefined),
@@ -4114,6 +4144,14 @@ olx.source.TileImageOptions;
  * @api
  */
 olx.source.TileImageOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.TileImageOptions.prototype.cacheSize;
 
 
 /**
@@ -4250,6 +4288,7 @@ olx.source.TileImageOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *            cacheSize: (number|undefined),
  *            format: (ol.format.Feature|undefined),
  *            logo: (string|olx.LogoOptions|undefined),
  *            opaque: (boolean|undefined),
@@ -4276,6 +4315,15 @@ olx.source.VectorTileOptions;
  * @api
  */
 olx.source.VectorTileOptions.prototype.attributions;
+
+
+
+/**
+ * Cache size. Default is `128`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.VectorTileOptions.prototype.cacheSize;
 
 
 /**
@@ -4498,13 +4546,22 @@ olx.source.ImageMapGuideOptions.prototype.params;
 
 
 /**
- * @typedef {{layer: string,
+ * @typedef {{cacheSize: (number|undefined),
+ *     layer: string,
  *     reprojectionErrorThreshold: (number|undefined),
  *     tileLoadFunction: (ol.TileLoadFunctionType|undefined),
  *     url: (string|undefined)}}
  * @api
  */
 olx.source.MapQuestOptions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.MapQuestOptions.prototype.cacheSize;
 
 
 /**
@@ -4580,6 +4637,7 @@ olx.source.TileDebugOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     maxZoom: (number|undefined),
  *     opaque: (boolean|undefined),
@@ -4598,6 +4656,14 @@ olx.source.OSMOptions;
  * @api stable
  */
 olx.source.OSMOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.OSMOptions.prototype.cacheSize;
 
 
 /**
@@ -4996,7 +5062,8 @@ olx.source.ImageWMSOptions.prototype.url;
 
 
 /**
- * @typedef {{layer: string,
+ * @typedef {{cacheSize: (number|undefined),
+ *     layer: string,
  *     minZoom: (number|undefined),
  *     maxZoom: (number|undefined),
  *     opaque: (boolean|undefined),
@@ -5007,6 +5074,13 @@ olx.source.ImageWMSOptions.prototype.url;
  */
 olx.source.StamenOptions;
 
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.StamenOptions.prototype.cacheSize;
 
 /**
  * Layer.
@@ -5156,6 +5230,7 @@ olx.source.ImageStaticOptions.prototype.url;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     params: (Object.<string, *>|undefined),
  *     logo: (string|olx.LogoOptions|undefined),
@@ -5177,6 +5252,14 @@ olx.source.TileArcGISRestOptions;
  * @api
  */
 olx.source.TileArcGISRestOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.TileArcGISRestOptions.prototype.cacheSize;
 
 
 /**
@@ -5283,6 +5366,7 @@ olx.source.TileArcGISRestOptions.prototype.urls;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     jsonp: (boolean|undefined),
  *     reprojectionErrorThreshold: (number|undefined),
@@ -5302,6 +5386,14 @@ olx.source.TileJSONOptions;
  * @api stable
  */
 olx.source.TileJSONOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.TileJSONOptions.prototype.cacheSize;
 
 
 /**
@@ -5365,6 +5457,7 @@ olx.source.TileJSONOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     params: Object.<string,*>,
  *     crossOrigin: (null|string|undefined),
  *     gutter: (number|undefined),
@@ -5390,6 +5483,14 @@ olx.source.TileWMSOptions;
  * @api stable
  */
 olx.source.TileWMSOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.TileWMSOptions.prototype.cacheSize;
 
 
 /**
@@ -5655,6 +5756,7 @@ olx.source.VectorOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (string|null|undefined),
  *     logo: (string|olx.LogoOptions|undefined),
  *     tileGrid: ol.tilegrid.WMTS,
@@ -5687,6 +5789,14 @@ olx.source.WMTSOptions;
  * @api
  */
 olx.source.WMTSOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.WMTSOptions.prototype.cacheSize;
 
 
 /**
@@ -5862,6 +5972,7 @@ olx.source.WMTSOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     logo: (string|olx.LogoOptions|undefined),
  *     opaque: (boolean|undefined),
@@ -5888,6 +5999,14 @@ olx.source.XYZOptions;
  * @api stable
  */
 olx.source.XYZOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.XYZOptions.prototype.cacheSize;
 
 
 /**
@@ -6028,6 +6147,7 @@ olx.source.XYZOptions.prototype.wrapX;
 
 /**
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     logo: (string|olx.LogoOptions|undefined),
  *     reprojectionErrorThreshold: (number|undefined),
@@ -6045,6 +6165,14 @@ olx.source.ZoomifyOptions;
  * @api stable
  */
 olx.source.ZoomifyOptions.prototype.attributions;
+
+
+/**
+ * Cache size. Default is `2048`.
+ * @type {number|undefined}
+ * @api
+ */
+olx.source.ZoomifyOptions.prototype.cacheSize;
 
 
 /**
@@ -6174,8 +6302,8 @@ olx.style.FillOptions;
 
 
 /**
- * A color, gradient or pattern. See {@link ol.color} 
- * and {@link ol.colorlike} for possible formats. Default null; 
+ * A color, gradient or pattern. See {@link ol.color}
+ * and {@link ol.colorlike} for possible formats. Default null;
  * if null, the Canvas/renderer default black will be used.
  * @type {ol.Color|ol.ColorLike|undefined}
  * @api
