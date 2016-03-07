@@ -628,6 +628,23 @@ ol.View.prototype.setZoom = function(zoom) {
   this.setResolution(resolution);
 };
 
+/**
+ * Updates the view's resolution constrains options.
+ * @param {{constraint: ol.ResolutionConstraintType, maxResolution: number,
+ *     minResolution: number}} options The constraint.
+ & @observable
+ * @api
+ */
+ol.View.prototype.setResolutionConstraints = function(options) {
+    var resolutionConstraintInfo = ol.View.createResolutionConstraint_(options);
+    this.maxResolution_ = resolutionConstraintInfo.maxResolution;
+    this.minResolution_ = resolutionConstraintInfo.minResolution;
+    this.minZoom_ = resolutionConstraintInfo.minZoom;
+    this.constraints_.resolution = resolutionConstraintInfo.constraint;
+	
+	this.getProperties()[ol.ViewProperty.RESOLUTION] = this.constrainResolution(this.maxResolution_);
+};
+
 
 /**
  * @param {olx.ViewOptions} options View options.
