@@ -115,6 +115,7 @@ ol.geom.SimpleGeometry.prototype.getFirstCoordinate = function() {
 
 /**
  * @return {Array.<number>} Flat coordinates.
+ * @api
  */
 ol.geom.SimpleGeometry.prototype.getFlatCoordinates = function() {
   return this.flatCoordinates;
