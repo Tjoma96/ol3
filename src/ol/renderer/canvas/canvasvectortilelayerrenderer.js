@@ -198,6 +198,10 @@ ol.renderer.canvas.VectorTileLayer.prototype.createReplayGroup = function(tile,
       'Source is an ol.source.VectorTile');
   var tileGrid = source.getTileGrid();
   var tileCoord = tile.getTileCoord();
+  if(tile.getProjection() === undefined) {
+	  reproject = true;
+	  tile.setProjection(projection);
+  }
   var tileProjection = tile.getProjection();
   var pixelSpace = tileProjection.getUnits() == ol.proj.Units.TILE_PIXELS;
   var resolution = tileGrid.getResolution(tileCoord[0]);
