@@ -3,7 +3,6 @@ goog.provide('ol.webgl.Shader');
 goog.provide('ol.webgl.Vertex');
 goog.provide('ol.webgl.shader');
 
-goog.require('goog.webgl');
 goog.require('ol.functions');
 goog.require('ol.webgl');
 
@@ -25,9 +24,10 @@ ol.webgl.Shader = function(source) {
 
 
 /**
+ * @abstract
  * @return {number} Type.
  */
-ol.webgl.Shader.prototype.getType = goog.abstractMethod;
+ol.webgl.Shader.prototype.getType = function() {};
 
 
 /**
@@ -60,7 +60,7 @@ ol.inherits(ol.webgl.shader.Fragment, ol.webgl.Shader);
  * @inheritDoc
  */
 ol.webgl.shader.Fragment.prototype.getType = function() {
-  return goog.webgl.FRAGMENT_SHADER;
+  return ol.webgl.FRAGMENT_SHADER;
 };
 
 
@@ -80,5 +80,5 @@ ol.inherits(ol.webgl.shader.Vertex, ol.webgl.Shader);
  * @inheritDoc
  */
 ol.webgl.shader.Vertex.prototype.getType = function() {
-  return goog.webgl.VERTEX_SHADER;
+  return ol.webgl.VERTEX_SHADER;
 };

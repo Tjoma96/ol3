@@ -4,7 +4,7 @@ goog.provide('ol.source.RasterEvent');
 goog.provide('ol.source.RasterEventType');
 
 goog.require('goog.asserts');
-goog.require('goog.vec.Mat4');
+goog.require('ol.transform');
 goog.require('ol.ImageCanvas');
 goog.require('ol.TileQueue');
 goog.require('ol.dom');
@@ -96,7 +96,7 @@ ol.source.Raster = function(options) {
   var layerStatesArray = ol.source.Raster.getLayerStatesArray_(this.renderers_);
   var layerStates = {};
   for (var i = 0, ii = layerStatesArray.length; i < ii; ++i) {
-    layerStates[goog.getUid(layerStatesArray[i].layer)] = layerStatesArray[i];
+    layerStates[ol.getUid(layerStatesArray[i].layer)] = layerStatesArray[i];
   }
 
   /**
@@ -120,7 +120,7 @@ ol.source.Raster = function(options) {
   this.frameState_ = {
     animate: false,
     attributions: {},
-    coordinateToPixelMatrix: goog.vec.Mat4.createNumber(),
+    coordinateToPixelTransform: ol.transform.create(),
     extent: null,
     focus: null,
     index: 0,
@@ -128,7 +128,7 @@ ol.source.Raster = function(options) {
     layerStatesArray: layerStatesArray,
     logos: {},
     pixelRatio: 1,
-    pixelToCoordinateMatrix: goog.vec.Mat4.createNumber(),
+    pixelToCoordinateTransform: ol.transform.create(),
     postRenderFunctions: [],
     size: [0, 0],
     skippedFeatureUids: {},

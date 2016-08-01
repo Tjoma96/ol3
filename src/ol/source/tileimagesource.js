@@ -170,7 +170,7 @@ ol.source.TileImage.prototype.getTileGridForProjection = function(projection) {
       (!thisProj || ol.proj.equivalent(thisProj, projection))) {
     return this.tileGrid;
   } else {
-    var projKey = goog.getUid(projection).toString();
+    var projKey = ol.getUid(projection).toString();
     if (!(projKey in this.tileGridForProjection)) {
       this.tileGridForProjection[projKey] =
           ol.tilegrid.getForProjection(projection);
@@ -191,7 +191,7 @@ ol.source.TileImage.prototype.getTileCacheForProjection = function(projection) {
   if (!thisProj || ol.proj.equivalent(thisProj, projection)) {
     return this.tileCache;
   } else {
-    var projKey = goog.getUid(projection).toString();
+    var projKey = ol.getUid(projection).toString();
     if (!(projKey in this.tileCacheForProjection)) {
       this.tileCacheForProjection[projKey] = new ol.TileCache();
     }
@@ -241,16 +241,21 @@ ol.source.TileImage.prototype.getTile = function(z, x, y, pixelRatio, projection
   } else {
     var cache = this.getTileCacheForProjection(projection);
     var tileCoord = [z, x, y];
+    var tile;
     var tileCoordKey = this.getKeyZXY.apply(this, tileCoord);
     if (cache.containsKey(tileCoordKey)) {
-      return /** @type {!ol.Tile} */ (cache.get(tileCoordKey));
+      tile = /** @type {!ol.Tile} */ (cache.get(tileCoordKey));
+    }
+    var key = this.getKey();
+    if (tile && tile.key == key) {
+      return tile;
     } else {
       var sourceProjection = this.getProjection();
       var sourceTileGrid = this.getTileGridForProjection(sourceProjection);
       var targetTileGrid = this.getTileGridForProjection(projection);
       var wrappedTileCoord =
           this.getTileCoordForTileUrlFunction(tileCoord, projection);
-      var tile = new ol.reproj.Tile(
+      var newTile = new ol.reproj.Tile(
           sourceProjection, sourceTileGrid,
           projection, targetTileGrid,
           tileCoord, wrappedTileCoord, this.getTilePixelRatio(pixelRatio),
@@ -259,9 +264,15 @@ ol.source.TileImage.prototype.getTile = function(z, x, y, pixelRatio, projection
             return this.getTileInternal(z, x, y, pixelRatio, sourceProjection);
           }.bind(this), this.reprojectionErrorThreshold_,
           this.renderReprojectionEdges_);
+      newTile.key = key;
 
-      cache.set(tileCoordKey, tile);
-      return tile;
+      if (tile) {
+        newTile.interimTile = tile;
+        cache.replace(tileCoordKey, newTile);
+      } else {
+        cache.set(tileCoordKey, newTile);
+      }
+      return newTile;
     }
   }
 };
@@ -345,7 +356,7 @@ ol.source.TileImage.prototype.setRenderReprojectionEdges = function(render) {
  * (e.g. projection has no extent defined) or
  * for optimization reasons (custom tile size, resolutions, ...).
  *
- * @param {ol.proj.ProjectionLike} projection Projection.
+ * @param {ol.ProjectionLike} projection Projection.
  * @param {ol.tilegrid.TileGrid} tilegrid Tile grid to use for the projection.
  * @api
  */
@@ -353,7 +364,7 @@ ol.source.TileImage.prototype.setTileGridForProjection = function(projection, ti
   if (ol.ENABLE_RASTER_REPROJECTION) {
     var proj = ol.proj.get(projection);
     if (proj) {
-      var projKey = goog.getUid(proj).toString();
+      var projKey = ol.getUid(proj).toString();
       if (!(projKey in this.tileGridForProjection)) {
         this.tileGridForProjection[projKey] = tilegrid;
       }

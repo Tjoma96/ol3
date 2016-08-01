@@ -109,7 +109,7 @@ ol.style.Icon = function(opt_options) {
       'imgSize must be set when image is provided');
 
   if ((src === undefined || src.length === 0) && image) {
-    src = image.src || goog.getUid(image).toString();
+    src = image.src || ol.getUid(image).toString();
   }
   goog.asserts.assert(src !== undefined && src.length > 0,
       'must provide a defined and non-empty src or image');
@@ -414,7 +414,7 @@ ol.style.IconImage_ = function(image, src, size, crossOrigin, imageState,
 
   /**
    * @private
-   * @type {Array.<ol.events.Key>}
+   * @type {Array.<ol.EventsKey>}
    */
   this.imageListenerKeys_ = null;
 

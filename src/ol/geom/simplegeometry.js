@@ -98,9 +98,10 @@ ol.geom.SimpleGeometry.prototype.computeExtent = function(extent) {
 
 
 /**
+ * @abstract
  * @return {Array} Coordinates.
  */
-ol.geom.SimpleGeometry.prototype.getCoordinates = goog.abstractMethod;
+ol.geom.SimpleGeometry.prototype.getCoordinates = function() {};
 
 
 /**
@@ -213,10 +214,11 @@ ol.geom.SimpleGeometry.prototype.setFlatCoordinatesInternal = function(layout, f
 
 
 /**
+ * @abstract
  * @param {Array} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
  */
-ol.geom.SimpleGeometry.prototype.setCoordinates = goog.abstractMethod;
+ol.geom.SimpleGeometry.prototype.setCoordinates = function(coordinates, opt_layout) {};
 
 
 /**
@@ -295,7 +297,7 @@ ol.geom.SimpleGeometry.prototype.translate = function(deltaX, deltaY) {
 
 /**
  * @param {ol.geom.SimpleGeometry} simpleGeometry Simple geometry.
- * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {ol.Transform} transform Transform.
  * @param {Array.<number>=} opt_dest Destination.
  * @return {Array.<number>} Transformed flat coordinates.
  */

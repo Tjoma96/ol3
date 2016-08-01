@@ -41,19 +41,19 @@ ol.layer.Layer = function(options) {
 
   /**
    * @private
-   * @type {?ol.events.Key}
+   * @type {?ol.EventsKey}
    */
   this.mapPrecomposeKey_ = null;
 
   /**
    * @private
-   * @type {?ol.events.Key}
+   * @type {?ol.EventsKey}
    */
   this.mapRenderKey_ = null;
 
   /**
    * @private
-   * @type {?ol.events.Key}
+   * @type {?ol.EventsKey}
    */
   this.sourceChangeKey_ = null;
 
@@ -182,7 +182,7 @@ ol.layer.Layer.prototype.setMap = function(map) {
           layerState.managed = false;
           layerState.zIndex = Infinity;
           evt.frameState.layerStatesArray.push(layerState);
-          evt.frameState.layerStates[goog.getUid(this)] = layerState;
+          evt.frameState.layerStates[ol.getUid(this)] = layerState;
         }, this);
     this.mapRenderKey_ = ol.events.listen(
         this, ol.events.EventType.CHANGE, map.render, map);
