@@ -1,10 +1,5 @@
 goog.provide('ol.test.Overlay');
 
-goog.require('ol.Map');
-goog.require('ol.Overlay');
-goog.require('ol.View');
-
-
 describe('ol.Overlay', function() {
   var target, map;
 
@@ -76,3 +71,7 @@ describe('ol.Overlay', function() {
   });
 
 });
+
+goog.require('ol.Map');
+goog.require('ol.Overlay');
+goog.require('ol.View');

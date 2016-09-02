@@ -1,9 +1,5 @@
 goog.provide('ol.test.reproj.Triangulation');
 
-goog.require('ol.proj');
-goog.require('ol.reproj.Triangulation');
-
-
 describe('ol.reproj.Triangulation', function() {
   beforeEach(function() {
     proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 ' +
@@ -42,3 +38,7 @@ describe('ol.reproj.Triangulation', function() {
     });
   });
 });
+
+
+goog.require('ol.proj');
+goog.require('ol.reproj.Triangulation');

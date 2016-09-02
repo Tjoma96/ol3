@@ -1,3 +1,4 @@
+goog.require('ol.Attribution');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.format.EsriJSON');
@@ -11,7 +12,6 @@ goog.require('ol.loadingstrategy');
 goog.require('ol.proj');
 goog.require('ol.source.Vector');
 goog.require('ol.source.XYZ');
-goog.require('ol.tilegrid');
 
 
 var serviceUrl = 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/' +
@@ -57,7 +57,7 @@ var raster = new ol.layer.Tile({
   source: new ol.source.XYZ({
     attributions: 'Tiles © <a href="http://services.arcgisonline.com/ArcGIS/' +
         'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+    url: 'http://server.arcgisonline.com/ArcGIS/rest/services/' +
         'World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
   })
 });

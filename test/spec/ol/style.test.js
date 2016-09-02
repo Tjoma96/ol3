@@ -1,10 +1,5 @@
 goog.provide('ol.test.style.Style');
 
-goog.require('ol.Feature');
-goog.require('ol.geom.Point');
-goog.require('ol.style.Style');
-
-
 describe('ol.style.Style', function() {
 
   describe('#setZIndex', function() {
@@ -67,16 +62,16 @@ describe('ol.style.Style', function() {
 
 });
 
-describe('ol.style.Style.createFunction()', function() {
+describe('ol.style.createStyleFunction()', function() {
   var style = new ol.style.Style();
 
   it('creates a style function from a single style', function() {
-    var styleFunction = ol.style.Style.createFunction(style);
+    var styleFunction = ol.style.createStyleFunction(style);
     expect(styleFunction()).to.eql([style]);
   });
 
   it('creates a style function from an array of styles', function() {
-    var styleFunction = ol.style.Style.createFunction([style]);
+    var styleFunction = ol.style.createStyleFunction([style]);
     expect(styleFunction()).to.eql([style]);
   });
 
@@ -84,14 +79,18 @@ describe('ol.style.Style.createFunction()', function() {
     var original = function() {
       return [style];
     };
-    var styleFunction = ol.style.Style.createFunction(original);
+    var styleFunction = ol.style.createStyleFunction(original);
     expect(styleFunction).to.be(original);
   });
 
   it('throws on (some) unexpected input', function() {
     expect(function() {
-      ol.style.Style.createFunction({bogus: 'input'});
+      ol.style.createStyleFunction({bogus: 'input'});
     }).to.throwException();
   });
 
 });
+
+goog.require('ol.Feature');
+goog.require('ol.geom.Point');
+goog.require('ol.style.Style');

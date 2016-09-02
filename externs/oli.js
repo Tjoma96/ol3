@@ -12,18 +12,6 @@ var oli;
 /**
  * @interface
  */
-oli.AssertionError = function() {};
-
-
-/**
- * @type {number}
- */
-oli.AssertionError.prototype.code;
-
-
-/**
- * @interface
- */
 oli.events.Event = function() {};
 
 
@@ -52,13 +40,13 @@ oli.events.Event.prototype.stopPropagation = function() {};
 /**
  * @interface
  */
-oli.Collection.Event = function() {};
+oli.CollectionEvent = function() {};
 
 
 /**
  * @type {*}
  */
-oli.Collection.Event.prototype.element;
+oli.CollectionEvent.prototype.element;
 
 
 /**
@@ -347,22 +335,22 @@ oli.source.RasterEvent.prototype.data;
 /**
  * @interface
  */
-oli.source.Tile.Event = function() {};
+oli.source.TileEvent = function() {};
 
 
 /**
  * @type {ol.Tile}
  */
-oli.source.Tile.Event.prototype.tile;
+oli.source.TileEvent.prototype.tile;
 
 
 /**
  * @interface
  */
-oli.source.Vector.Event = function() {};
+oli.source.VectorEvent = function() {};
 
 
 /**
  * @type {ol.Feature|undefined}
  */
-oli.source.Vector.Event.prototype.feature;
+oli.source.VectorEvent.prototype.feature;

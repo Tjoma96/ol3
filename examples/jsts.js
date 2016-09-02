@@ -1,5 +1,6 @@
 // NOCOMPILE
 // this example uses JSTS for which we don't have an externs file.
+goog.require('ol.Feature');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.format.GeoJSON');

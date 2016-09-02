@@ -1,8 +1,5 @@
 goog.provide('ol.test.TileRange');
 
-goog.require('ol.TileRange');
-
-
 describe('ol.TileRange', function() {
 
   describe('constructor', function() {
@@ -61,11 +58,9 @@ describe('ol.TileRange', function() {
     });
 
     describe('with mixed z', function() {
-      it('returns the expected TileRange', function() {
-        expect(function() {
-          return new ol.TileRange.boundingTileRange([3, 1, 3], [4, 2, 0]);
-        }).to.throwException();
-      });
+      expect(function() {
+        return new ol.TileRange.boundingTileRange([3, 1, 3], [4, 2, 0]);
+      }).to.throwException();
     });
   });
 
@@ -131,3 +126,5 @@ describe('ol.TileRange', function() {
   });
 
 });
+
+goog.require('ol.TileRange');

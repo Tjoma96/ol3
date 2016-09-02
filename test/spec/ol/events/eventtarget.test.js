@@ -1,10 +1,5 @@
 goog.provide('ol.test.events.EventTarget');
 
-goog.require('ol.Disposable');
-goog.require('ol.events');
-goog.require('ol.events.Event');
-goog.require('ol.events.EventTarget');
-
 
 describe('ol.events.EventTarget', function() {
   var called, events, eventTarget, spy1, spy2, spy3;
@@ -163,3 +158,9 @@ describe('ol.events.EventTarget', function() {
     });
   });
 });
+
+
+goog.require('ol.Disposable');
+goog.require('ol.events');
+goog.require('ol.events.Event');
+goog.require('ol.events.EventTarget');

@@ -14,13 +14,15 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           source: new ol.source.TileJSON({
-            url: 'https://api.tiles.mapbox.com/v3/mapbox.20110804-hoa-foodinsecurity-3month.json?secure',
+            url: 'http://api.tiles.mapbox.com/v3/' +
+                'mapbox.20110804-hoa-foodinsecurity-3month.json',
             crossOrigin: 'anonymous'
           })
         }),
         new ol.layer.Tile({
           source: new ol.source.TileJSON({
-            url: 'https://api.tiles.mapbox.com/v3/mapbox.world-borders-light.json?secure',
+            url: 'http://api.tiles.mapbox.com/v3/' +
+                'mapbox.world-borders-light.json',
             crossOrigin: 'anonymous'
           })
         })

@@ -1,7 +1,5 @@
 goog.provide('ol.test.color');
 
-goog.require('ol.color');
-
 
 describe('ol.color', function() {
 
@@ -153,3 +151,6 @@ describe('ol.color', function() {
 
   });
 });
+
+
+goog.require('ol.color');

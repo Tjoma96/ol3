@@ -1,16 +1,5 @@
 goog.provide('ol.test.TileGrid');
 
-goog.require('ol');
-goog.require('ol.TileRange');
-goog.require('ol.extent');
-goog.require('ol.proj');
-goog.require('ol.proj.EPSG3857');
-goog.require('ol.proj.METERS_PER_UNIT');
-goog.require('ol.proj.Projection');
-goog.require('ol.tilegrid');
-goog.require('ol.tilegrid.TileGrid');
-
-
 describe('ol.tilegrid.TileGrid', function() {
   var extent;
   var resolutions;
@@ -154,6 +143,28 @@ describe('ol.tilegrid.TileGrid', function() {
           resolutions: [100, 50, 25, 10],
           tileSizes: [tileSize, tileSize, tileSize, tileSize, tileSize],
           origin: origin
+        });
+      }).to.throwException();
+    });
+  });
+
+  describe('create with extent exceeding tile ranges', function() {
+    it('throws an exception', function() {
+      expect(function() {
+        return new ol.tilegrid.TileGrid({
+          extent: [10, 20, 30, 40],
+          sizes: [[1, 1]],
+          tileSize: 10,
+          resolutions: [1]
+        });
+      }).to.throwException();
+      expect(function() {
+        return new ol.tilegrid.TileGrid({
+          extent: [10, 20, 30, 40],
+          origin: [10, 40], // top-left origin
+          sizes: [[3, 3]], // would have to be [[3, -3]] for this to not throw
+          tileSize: 10,
+          resolutions: [1]
         });
       }).to.throwException();
     });
@@ -1081,3 +1092,12 @@ describe('ol.tilegrid.TileGrid', function() {
     });
   });
 });
+
+goog.require('ol.extent');
+goog.require('ol.proj');
+goog.require('ol.proj.METERS_PER_UNIT');
+goog.require('ol.proj');
+goog.require('ol.proj.EPSG3857');
+goog.require('ol.proj.Projection');
+goog.require('ol.TileRange');
+goog.require('ol.tilegrid.TileGrid');

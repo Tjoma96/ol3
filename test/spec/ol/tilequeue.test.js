@@ -1,12 +1,5 @@
 goog.provide('ol.test.TileQueue');
 
-goog.require('ol.ImageTile');
-goog.require('ol.Tile');
-goog.require('ol.TileQueue');
-goog.require('ol.source.Image');
-goog.require('ol.structs.PriorityQueue');
-
-
 describe('ol.TileQueue', function() {
 
   function addRandomPriorityTiles(tq, num) {
@@ -165,3 +158,9 @@ describe('ol.TileQueue', function() {
   });
 
 });
+
+goog.require('ol.ImageTile');
+goog.require('ol.Tile');
+goog.require('ol.TileQueue');
+goog.require('ol.source.Image');
+goog.require('ol.structs.PriorityQueue');

@@ -1,8 +1,5 @@
 goog.provide('ol.test.Geolocation');
 
-goog.require('ol.Geolocation');
-
-
 describe('ol.Geolocation', function() {
 
   describe('constructor', function() {
@@ -15,3 +12,5 @@ describe('ol.Geolocation', function() {
   });
 
 });
+
+goog.require('ol.Geolocation');

@@ -14,8 +14,6 @@ goog.require('ol.style.Style');
 goog.require('ol.style.Text');
 
 
-var distance = document.getElementById('distance');
-
 var count = 20000;
 var features = new Array(count);
 var e = 4500000;
@@ -29,7 +27,7 @@ var source = new ol.source.Vector({
 });
 
 var clusterSource = new ol.source.Cluster({
-  distance: parseInt(distance.value, 10),
+  distance: 40,
   source: source
 });
 
@@ -75,8 +73,4 @@ var map = new ol.Map({
     center: [0, 0],
     zoom: 2
   })
-});
-
-distance.addEventListener('input', function() {
-  clusterSource.setDistance(parseInt(distance.value, 10));
 });

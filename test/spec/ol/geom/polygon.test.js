@@ -1,10 +1,5 @@
 goog.provide('ol.test.geom.Polygon');
 
-goog.require('ol.extent');
-goog.require('ol.geom.Circle');
-goog.require('ol.geom.LinearRing');
-goog.require('ol.geom.Polygon');
-
 
 describe('ol.geom.Polygon', function() {
 
@@ -113,15 +108,15 @@ describe('ol.geom.Polygon', function() {
     });
 
     it('does not contain outside coordinates', function() {
-      expect(polygon.intersectsCoordinate(outsideOuter)).to.be(false);
+      expect(polygon.containsCoordinate(outsideOuter)).to.be(false);
     });
 
     it('does contain inside coordinates', function() {
-      expect(polygon.intersectsCoordinate(inside)).to.be(true);
+      expect(polygon.containsCoordinate(inside)).to.be(true);
     });
 
     it('does not contain inside inner coordinates', function() {
-      expect(polygon.intersectsCoordinate(insideInner)).to.be(false);
+      expect(polygon.containsCoordinate(insideInner)).to.be(false);
     });
 
     describe('#getCoordinates()', function() {
@@ -208,15 +203,15 @@ describe('ol.geom.Polygon', function() {
     });
 
     it('does not contain outside coordinates', function() {
-      expect(polygon.intersectsCoordinate(outsideOuter)).to.be(false);
+      expect(polygon.containsCoordinate(outsideOuter)).to.be(false);
     });
 
     it('does contain inside coordinates', function() {
-      expect(polygon.intersectsCoordinate(inside)).to.be(true);
+      expect(polygon.containsCoordinate(inside)).to.be(true);
     });
 
     it('does not contain inside inner coordinates', function() {
-      expect(polygon.intersectsCoordinate(insideInner)).to.be(false);
+      expect(polygon.containsCoordinate(insideInner)).to.be(false);
     });
 
     describe('#intersectsExtent', function() {
@@ -307,15 +302,15 @@ describe('ol.geom.Polygon', function() {
     });
 
     it('does not contain outside coordinates', function() {
-      expect(polygon.intersectsCoordinate(outsideOuter)).to.be(false);
+      expect(polygon.containsCoordinate(outsideOuter)).to.be(false);
     });
 
     it('does contain inside coordinates', function() {
-      expect(polygon.intersectsCoordinate(inside)).to.be(true);
+      expect(polygon.containsCoordinate(inside)).to.be(true);
     });
 
     it('does not contain inside inner coordinates', function() {
-      expect(polygon.intersectsCoordinate(insideInner)).to.be(false);
+      expect(polygon.containsCoordinate(insideInner)).to.be(false);
     });
 
     describe('#intersectsExtent', function() {
@@ -413,16 +408,16 @@ describe('ol.geom.Polygon', function() {
     });
 
     it('does not contain outside coordinates', function() {
-      expect(polygon.intersectsCoordinate(outsideOuter)).to.be(false);
+      expect(polygon.containsCoordinate(outsideOuter)).to.be(false);
     });
 
     it('does contain inside coordinates', function() {
-      expect(polygon.intersectsCoordinate(inside)).to.be(true);
+      expect(polygon.containsCoordinate(inside)).to.be(true);
     });
 
     it('does not contain inside inner coordinates', function() {
-      expect(polygon.intersectsCoordinate(insideInner1)).to.be(false);
-      expect(polygon.intersectsCoordinate(insideInner2)).to.be(false);
+      expect(polygon.containsCoordinate(insideInner1)).to.be(false);
+      expect(polygon.containsCoordinate(insideInner2)).to.be(false);
     });
 
     describe('#intersectsExtent', function() {
@@ -510,37 +505,6 @@ describe('ol.geom.Polygon', function() {
     });
   });
 
-  describe('#scale()', function() {
-
-    it('scales a polygon', function() {
-      var geom = new ol.geom.Polygon([
-        [[-1, -2], [1, -2], [1, 2], [-1, 2], [-1, -2]]
-      ]);
-      geom.scale(10);
-      var coordinates = geom.getCoordinates();
-      expect(coordinates).to.eql([[[-10, -20], [10, -20], [10, 20], [-10, 20], [-10, -20]]]);
-    });
-
-    it('accepts sx and sy', function() {
-      var geom = new ol.geom.Polygon([
-        [[-1, -2], [1, -2], [1, 2], [-1, 2], [-1, -2]]
-      ]);
-      geom.scale(2, 3);
-      var coordinates = geom.getCoordinates();
-      expect(coordinates).to.eql([[[-2, -6], [2, -6], [2, 6], [-2, 6], [-2, -6]]]);
-    });
-
-    it('accepts an anchor', function() {
-      var geom = new ol.geom.Polygon([
-        [[-1, -2], [1, -2], [1, 2], [-1, 2], [-1, -2]]
-      ]);
-      geom.scale(3, 2, [-1, -2]);
-      var coordinates = geom.getCoordinates();
-      expect(coordinates).to.eql([[[-1, -2], [5, -2], [5, 6], [-1, 6], [-1, -2]]]);
-    });
-
-  });
-
   describe('ol.geom.Polygon.fromExtent', function() {
     it('creates the correct polygon', function() {
       var extent = [1, 2, 3, 5];
@@ -588,3 +552,9 @@ describe('ol.geom.Polygon', function() {
   });
 
 });
+
+
+goog.require('ol.extent');
+goog.require('ol.geom.Circle');
+goog.require('ol.geom.LinearRing');
+goog.require('ol.geom.Polygon');

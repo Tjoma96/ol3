@@ -1,6 +1,5 @@
 goog.provide('ol.test.events.Event');
 
-goog.require('ol.events.Event');
 
 describe('ol.events.Event', function() {
 
@@ -48,3 +47,6 @@ describe('ol.events.Event', function() {
   });
 
 });
+
+
+goog.require('ol.events.Event');

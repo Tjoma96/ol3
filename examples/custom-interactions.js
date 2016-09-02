@@ -1,4 +1,3 @@
-goog.require('ol');
 goog.require('ol.Feature');
 goog.require('ol.Map');
 goog.require('ol.View');
@@ -150,7 +149,7 @@ var map = new ol.Map({
   layers: [
     new ol.layer.Tile({
       source: new ol.source.TileJSON({
-        url: 'https://api.tiles.mapbox.com/v3/mapbox.geography-class.json?secure'
+        url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.json'
       })
     }),
     new ol.layer.Vector({

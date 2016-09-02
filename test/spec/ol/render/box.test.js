@@ -1,12 +1,5 @@
 goog.provide('ol.test.render.Box');
 
-goog.require('ol.Disposable');
-goog.require('ol.Map');
-goog.require('ol.View');
-goog.require('ol.geom.Polygon');
-goog.require('ol.render.Box');
-
-
 describe('ol.render.Box', function() {
 
   var box, map, target;
@@ -74,3 +67,9 @@ describe('ol.render.Box', function() {
   });
 
 });
+
+goog.require('ol.Disposable');
+goog.require('ol.Map');
+goog.require('ol.View');
+goog.require('ol.geom.Polygon');
+goog.require('ol.render.Box');

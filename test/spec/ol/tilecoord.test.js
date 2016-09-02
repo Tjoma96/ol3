@@ -1,9 +1,5 @@
 goog.provide('ol.test.TileCoord');
 
-goog.require('ol.tilecoord');
-goog.require('ol.tilegrid.TileGrid');
-
-
 describe('ol.TileCoord', function() {
 
   describe('create', function() {
@@ -116,3 +112,6 @@ describe('ol.TileCoord', function() {
   });
 
 });
+
+goog.require('ol.tilecoord');
+goog.require('ol.tilegrid.TileGrid');

@@ -1,12 +1,5 @@
 goog.provide('ol.test.render');
 
-goog.require('ol.array');
-goog.require('ol.has');
-goog.require('ol.render');
-goog.require('ol.render.canvas.Immediate');
-goog.require('ol.transform');
-
-
 describe('ol.render', function() {
 
   describe('toContext', function() {
@@ -36,3 +29,9 @@ describe('ol.render', function() {
   });
 
 });
+
+
+goog.require('ol.transform');
+goog.require('ol.render');
+goog.require('ol.render.canvas.Immediate');
+goog.require('ol.vec.Mat4');

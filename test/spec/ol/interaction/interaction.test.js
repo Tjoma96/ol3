@@ -1,10 +1,5 @@
 goog.provide('ol.test.interaction.Interaction');
 
-goog.require('ol.events.EventTarget');
-goog.require('ol.Map');
-goog.require('ol.interaction.Interaction');
-
-
 describe('ol.interaction.Interaction', function() {
 
   describe('constructor', function() {
@@ -59,3 +54,7 @@ describe('ol.interaction.Interaction', function() {
   });
 
 });
+
+goog.require('ol.events.EventTarget');
+goog.require('ol.Map');
+goog.require('ol.interaction.Interaction');

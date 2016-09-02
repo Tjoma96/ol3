@@ -1,9 +1,5 @@
 goog.provide('ol.test.Object');
 
-goog.require('ol.Object');
-goog.require('ol.events');
-
-
 describe('ol.Object', function() {
 
   var o;
@@ -241,3 +237,7 @@ describe('ol.Object', function() {
   });
 
 });
+
+
+goog.require('ol.Object');
+goog.require('ol.events');

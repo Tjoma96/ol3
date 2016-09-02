@@ -1,7 +1,5 @@
 goog.provide('ol.test.size');
 
-goog.require('ol.size');
-
 
 describe('ol.size', function() {
 
@@ -77,3 +75,5 @@ describe('ol.size', function() {
   });
 
 });
+
+goog.require('ol.size');

@@ -1,8 +1,5 @@
 goog.provide('ol.test.Disposable');
 
-goog.require('ol.Disposable');
-
-
 describe('ol.Disposable', function() {
 
   describe('constructor', function() {
@@ -44,3 +41,5 @@ describe('ol.Disposable', function() {
   });
 
 });
+
+goog.require('ol.Disposable');

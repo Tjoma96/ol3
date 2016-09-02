@@ -1,7 +1,5 @@
 goog.provide('ol.test.webgl.Buffer');
 
-goog.require('ol.webgl.Buffer');
-
 
 describe('ol.webgl.Buffer', function() {
 
@@ -53,3 +51,5 @@ describe('ol.webgl.Buffer', function() {
   });
 
 });
+
+goog.require('ol.webgl.Buffer');

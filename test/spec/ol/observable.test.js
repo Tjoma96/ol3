@@ -1,9 +1,5 @@
 goog.provide('ol.test.Observable');
 
-goog.require('ol.events.EventTarget');
-goog.require('ol.Observable');
-
-
 describe('ol.Observable', function() {
 
   describe('constructor', function() {
@@ -184,3 +180,7 @@ describe('ol.Observable', function() {
   });
 
 });
+
+
+goog.require('ol.events.EventTarget');
+goog.require('ol.Observable');
