@@ -324,7 +324,7 @@ ol.interaction.Select.handleEvent = function(mapBrowserEvent) {
         new ol.interaction.SelectEvent(ol.interaction.SelectEventType.SELECT,
             selected, deselected, mapBrowserEvent));
   }
-  return !mapBrowserEvent.originalEvent.defaultPrevented;
+  return ol.events.condition.pointerMove(mapBrowserEvent);
 };
 
 
